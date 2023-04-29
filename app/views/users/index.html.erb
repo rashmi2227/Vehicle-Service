@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up
+</title>
+</head>
+<body>
+<%= render partial: "shared/basicheader" %>
+<form class="mx-auto col-10 col-md-8 col-lg-6" action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="text" class="form-control" name="user[user_name]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" name="user[email]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="user[password]" id="exampleInputPassword1" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input type="password" class="form-control" name="user[password_confirmation]" id="exampleInputPassword1" placeholder="Password Confirmation" required>
+  </div>
+  <div class="form-group">
+    <label for="role">Role</label>
+  <select class="form-select" aria-label="Default select example" name="user[role]" required>
+    <option value="customer">Customer</option>
+  <%# <option value="3">Employee</option> %>
+  </select>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<%= render partial: "shared/header" %>
+
+<form class="mx-auto col-10 col-md-8 col-lg-6" action="/vehicles/insert" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Model Name</label>
+    <input type="text" class="form-control" name="vehicle[vehicle_modal]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter model name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Brand</label>
+    <input type="text" class="form-control" name="vehicle[make]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter brand name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Color</label>
+    <input type="text" class="form-control" name="vehicle[color]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter color" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Vehicle Number</label>
+    <input type="text" class="form-control" name="vehicle[licence_number]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter vehicle number" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Purchase Date</label>
+    <input type="date" class="form-control" name="vehicle[purchase_date]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select Date" required>
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

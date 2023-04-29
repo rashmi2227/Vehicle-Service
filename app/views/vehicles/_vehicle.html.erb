@@ -1,0 +1,18 @@
+<div id="<%= dom_id vehicle %>">
+  <p>
+    <strong>Vehicle modal:</strong>
+    <%= vehicle.vehicle_modal %>
+  </p>
+
+  <p>
+    <strong>Service date:</strong>
+    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+  <input placeholder="Select date" type="text" id="example"  class="form-control">
+  <label for="example">Try me...</label>
+  <i class="fas fa-calendar input-prefix"></i>
+</div>
+     
+  </p>
+
+</div>
+ <%= javascript_include_tag ('dateCalender.js') %>
