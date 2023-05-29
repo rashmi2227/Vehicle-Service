@@ -1,0 +1,10 @@
+<%= render partial: "shared/employeeheader" %>
+    <form class="mx-auto col-10 col-md-8 col-lg-6" action="/employees/check/vehicle" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Vehicle Number</label>
+    <input type="text" class="form-control" name="vehicle[vehicle_number]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter vehicle number" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,28 @@
+<%= render partial: "shared/adminheader" %>
+
+<div class="container" width="100%">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Payment Id</div>
+      <div class="col col-2">Service No</div>
+      <div class="col col-3">Customer Id</div>
+      <div class="col col-4">Vehicle Id</div>
+      <div class="col col-5">Amount</div>
+      <div class="col col-6">Payment Status</div>
+      <div class="col col-7">Modify Amount</div>
+      <div class="col col-d">Delete</div>
+    </li>
+    <% @payments.each do |payment| %>
+        <li class="table-row">            
+            <div class="col col-1" data-label="Payment Id"><%= payment.id %></div>
+            <div class="col col-2" data-label="Service No"><%= payment.servicerequest_id %></div>
+            <div class="col col-3" data-label="Custome Id"><%= payment.user_login&.user_name%> </div>
+            <div class="col col-4" data-label="vehicle Id"><%= payment.vehicle&.vehicle_number%></div> 
+            <div class="col col-5" data-label="Amount"><%= payment.amount %></div> 
+            <div class="col col-6" data-label="Payment Status"><%= payment.payment_status%></div> 
+            <div class="col col-7" data-label="Modify Amount"><%= link_to "Modify", "/payments/#{payment.id}/check/amount"%></div>  
+             <div class="col col-8" data-label="Delete"><%= link_to "Delete", "/payments/delete/#{payment.id}"%></div>       
+        </li>
+     <% end %>
+  </ul>
+</div>

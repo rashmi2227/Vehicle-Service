@@ -1,0 +1,23 @@
+<%= render partial: "shared/adminheader" %>
+<div class="container" width="100%">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Service No</div>
+      <div class="col col-2">Consumer Name</div>
+      <div class="col col-3">Vehicle Number</div>
+      <div class="col col-4">Start Date</div>
+      <div class="col col-5">End Date</div>
+      <div class="col col-6">Assign Service</div>
+    </li>
+    <% @servicerequests.each do |servicerequest| %>
+        <li class="table-row">            
+            <div class="col col-1" data-label="Service No"><%= servicerequest.id %></div>
+            <div class="col col-2" data-label="Consumer Id"><%=servicerequest.user_login&.user_name%></div>
+            <div class="col col-3" data-label="Vehicle Id"><%= servicerequest.vehicle&.vehicle_number %> </div>
+            <div class="col col-4" data-label="Start Date"><%= servicerequest.start_date%></div> 
+            <div class="col col-5" data-label="End Date"><%= servicerequest.end_date%></div> 
+            <div class="col col-6" data-label="Assign Service"><%= link_to "Assign Service", "/admin/check/#{servicerequest.id}"%></div>       
+        </li>
+     <% end %>
+  </ul>
+</div>

@@ -2,6 +2,7 @@
 
 body{
 	font-family: 'Roboto', sans-serif;
+	height: 100%;
 	/* background-image: url("assets/image1.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
@@ -9,14 +10,20 @@ body{
 }
 body::before {    
     content: "";
-    background-image: url('assets/image1.jpg');
+    /* background-image: url('assets/car.png'); */
+	background-image: url('assets/image1.jpg');
     background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.65;
+	height: 100%;
+    /* opacity: 0.80; */
+	opacity: 0.55;
     z-index: -1;
 }
 

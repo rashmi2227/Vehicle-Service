@@ -1,0 +1,33 @@
+<%= render partial: "shared/header" %>
+<%= form_for @payment, url: "/payment/update/amount/#{@payment.id}", method: :patch, html: {class: "mx-auto col-10 col-md-8 col-lg-6"} do |f| %>
+<div class="form-group">
+  <%= f.label :payment_id %>
+  <%= f.text_field :id, class: "form-control" , readonly: true%>
+  </div>
+<div class="form-group">
+  <%= f.label :servicerequest_id %>
+  <%= f.text_field :servicerequest_id, class: "form-control",  readonly: true%>
+  </div>
+<div class="form-group">
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id, class: "form-control" ,readonly: true%>
+  </div>
+<div class="form-group">
+  <%= f.label :vehicle_id %>
+  <%= f.text_field :vehicle_id, class: "form-control", readonly: true %>
+  </div>
+<div class="form-group">
+  <%= f.label :amount %>
+  <%= f.text_field :amount, class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :payment_status %>
+  <%= f.text_field :payment_status, class: "form-control", readonly: true %>
+  </div>
+<div class="form-group">
+  <%= f.submit "Update Amount", class: "btn btn-primary"  %>
+  </div>
+<% end %>
+
+
+

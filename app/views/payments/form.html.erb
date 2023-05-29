@@ -1,0 +1,12 @@
+<%= render partial: "shared/adminheader" %>
+<br>
+    <form class="mx-auto col-10 col-md-8 col-lg-6" action="/payment/check" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Service Id</label>
+    <input type="text" class="form-control" name="payment[servicerequest_id]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter service request id" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

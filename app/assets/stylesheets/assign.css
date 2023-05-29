@@ -1,0 +1,32 @@
+
+body {
+    overflow: scroll; /* Show scrollbars */
+  }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+.input{
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 5px;  
+  padding: 1rem 0.7rem;
+  color: gray;
+  transition: 0.1s ease-out;
+}

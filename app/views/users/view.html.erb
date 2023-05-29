@@ -1,0 +1,17 @@
+<%= render partial: "shared/adminheader" %>
+<div class="container" width="100%">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Employee Id</div>
+      <div class="col col-2">Employee Name</div>
+      <div class="col col-3">Email</div>
+    </li>
+    <% @users.each do |user| %>
+        <li class="table-row">            
+            <div class="col col-1" data-label="Employee Id"><%= user.id %></div>
+            <div class="col col-2" data-label="Employee Name"><%= user.user_name %></div>
+            <div class="col col-3" data-label="Email"><%= user.email%> </div>   
+        </li>
+     <% end %>
+  </ul>
+</div>

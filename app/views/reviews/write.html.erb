@@ -1,0 +1,21 @@
+<%= render partial: "shared/header" %>
+<form class="mx-auto col-10 col-md-8 col-lg-6" action="/reviews/add" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Id</label>
+    <input type="text" class="form-control" name="review[reviewable_id]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter service Id /technician name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Content</label>
+      <input type="text" class="form-control" name="review[comment]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter comment" required>
+    <%# <input type="textarea" class="form-control" name="review[content]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" style="height: 100px;" autofocus required> %>
+  </div>
+  <div class="form-group">
+    <label for="role">Role</label>
+  <select class="form-select" aria-label="Default select example" name="review[reviewable_type]"  required>
+    <option value="UserLogin">Technician</option>
+  <option value="Servicerequest">Service</option>
+  </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

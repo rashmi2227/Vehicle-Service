@@ -1,0 +1,15 @@
+<div class="popup-wrap">
+    <div class="popup-box">
+      <h2>Invalid action</h2>
+      <h3>Payment already done</h3>
+      <a class="close-btn popup-close" href="/bike/show">x</a>
+    </div>
+  </div>
+
+<script src="<%= asset_path 'alert1.js' %>"></script>
+<script>
+document.querySelector('.popup-close').addEventListener('click', function() {
+    window.location.href = '/payment/status';
+  });
+
+</script>

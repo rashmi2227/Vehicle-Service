@@ -1,0 +1,16 @@
+ <%= stylesheet_link_tag 'alert' %>
+<div class="popup-wrap">
+    <div class="popup-box">
+      <h2>Invalid Number</h2>
+      <h3>Service Id Not Found</h3>
+      <a class="close-btn popup-close" href="/bike/show">x</a>
+    </div>
+  </div>
+
+<script src="<%= asset_path 'alert1.js' %>"></script>
+<script>
+document.querySelector('.popup-close').addEventListener('click', function() {
+    window.location.href = '/view/all/service';
+  });
+
+</script>

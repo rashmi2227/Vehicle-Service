@@ -1,0 +1,26 @@
+<%= render partial: "shared/adminheader" %>   
+  <div class="container-box">
+  <form class="mx-auto col-10 col-md-8 col-lg-6" action="/payment/add/<%= params[:id] %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Service No</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<%= params[:id] %>" placeholder="Enter name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Payment Amount</label>
+    <input type="number" class="form-control" name="payment[amount]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Payment Amount" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <%= javascript_include_tag 'addField' %>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <%= render partial: "shared/header" %>
-
-<form class="mx-auto col-10 col-md-8 col-lg-6" action="/vehicles/insert" method="post">
+<div class="d-flex flex-column justify-content-center px-5 mx-5">
+<form class="mx-auto col-10 col-md-8 col-lg-6" action="/vehicles/create" method="post">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <div class="form-group">
     <label for="exampleInputEmail1">Model Name</label>
@@ -16,15 +16,13 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Vehicle Number</label>
-    <input type="text" class="form-control" name="vehicle[licence_number]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter vehicle number" required>
+    <input type="text" class="form-control" name="vehicle[vehicle_number]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter vehicle number" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Purchase Date</label>
     <input type="date" class="form-control" name="vehicle[purchase_date]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select Date" required>
   </div>
-
-
-
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+</div>

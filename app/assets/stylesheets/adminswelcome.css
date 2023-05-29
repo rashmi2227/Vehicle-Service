@@ -1,0 +1,21 @@
+  @import url('https://fonts.googleapis.com/css2?family=Mogra&family=Yatra+One&display=swap');
+.box {
+    margin-top: 15%;
+  height: 150px;
+  margin-left: 10%;
+  align-items: center;
+  color:blue;
+  font-family: 'Mogra', sans-serif;
+    justify-content: center;
+  }
+.box h1{
+    font-size: 58px;
+    /* font-weight: 500px; */
+    color: blue
+}
+/* body{
+    /* background-image: url('assets/car.png'); */
+    /* z-index: -1; */
+/* } */ 
+ 
+

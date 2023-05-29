@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'header' %>
 <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">Navbar</a>
+        <a class="navbar-brand navbar-logo" href="#">Car Repair</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
         </button>
@@ -8,10 +8,10 @@
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="/bike/new"><i class="fas fa-tachometer-alt"></i>Add Vehicle</a>
+                    <a class="nav-link" href="/user/review"><i class="fas fa-tachometer-alt"></i>Write Review</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/bike/delete"><i class="far fa-address-book"></i>Delete Vehicle</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bike/new"><i class="fas fa-tachometer-alt"></i>Add Vehicle</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/bike/update"><i class="far fa-clone"></i>Update Vehicle</a>
@@ -19,14 +19,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/bike/show"><i class="far fa-calendar-alt"></i>Show all Vehicles</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/bike/show"><i class="far fa-chart-bar"></i>Book service</a>
-                </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/bike/show"><i class="far fa-chart-bar"></i>Book service</a>
+                    <a class="nav-link" href="/service/booked"><i class="far fa-chart-bar"></i>View Booked service</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>User settings</a>
+                    <a class="nav-link" href="/payments/all"><i class="far fa-chart-bar"></i>Payment</a>
+                </li>
+                
+                <li class="nav-item">
+                    <%= button_to 'Sign Out', destroy_user_login_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "nav-link", style: "background: none!important; border: none; padding: 0!important; font-family: arial, sans-serif; color: #069; text-decoration: none; cursor: pointer; color: white;" %>
                 </li>
             </ul>
         </div>
@@ -38,8 +39,4 @@
 
 </body>
 </html>
-
-git config --global credential.helper store
-git remote set-url origin https://rashmi2227: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@github.com/rashmi2227/online-service.git
-
 

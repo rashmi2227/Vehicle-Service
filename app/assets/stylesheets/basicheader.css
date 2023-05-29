@@ -16,7 +16,7 @@ body::before {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.65;
+    /* opacity: 0.65; */
 }
 
 

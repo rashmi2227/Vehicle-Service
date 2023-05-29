@@ -16,5 +16,7 @@
  */
 @import "bootstap";
 @import "~mdb-ui-kit/scss/mdb";
-@import "mdb5-free-standard/css/mdb.min.css"
-
+@import "mdb5-free-standard/css/mdb.min.css";
+@import "toastr/toastr";
+@import "components/flash";
+@import "config/animations";

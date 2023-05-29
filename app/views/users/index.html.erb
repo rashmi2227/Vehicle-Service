@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Sign Up
-</title>
-</head>
-<body>
 <%= render partial: "shared/basicheader" %>
+<% if user_login_signed_in? %>
+<%= button_to 'Sign Out', destroy_user_login_session_path, method: :delete,
+  form: {data: {turbo_confirm: 'Are you sure?'}} , class: "nav-link"%>
+<%end%>
+
 <form class="mx-auto col-10 col-md-8 col-lg-6" action="/users" method="post">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <div class="form-group">
@@ -24,16 +22,6 @@
     <label for="exampleInputPassword1">Confirm Password</label>
     <input type="password" class="form-control" name="user[password_confirmation]" id="exampleInputPassword1" placeholder="Password Confirmation" required>
   </div>
-  <div class="form-group">
-    <label for="role">Role</label>
-  <select class="form-select" aria-label="Default select example" name="user[role]" required>
-    <option value="customer">Customer</option>
-  <%# <option value="3">Employee</option> %>
-  </select>
-  </div>
-
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-</body>
-</html>

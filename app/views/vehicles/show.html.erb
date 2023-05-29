@@ -1,30 +1,28 @@
 <%= render partial: "shared/header" %>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Brand</th>
-      <th>Model</th>      
-      <th>Color</th>
-      <th>Vehicle number</th>
-      <th>Service Date</th>
-      <th>Update</th>
-      <th>Delete Vehicle</th>
-      <th>Book</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @vehicles.each do |vehicle| %>
-      <tr>
-        <td><%= vehicle.make%></td>
-        <td><%= vehicle.vehicle_modal %></td>        
-        <td><%= vehicle.color%></td>
-        <td><%= vehicle.licence_number%></td>
-        <td><%= vehicle.purchase_date%></td>
-        <td><%= link_to "Edit", "/vehicles/#{vehicle.id}/edit" %></td>
-        <td><%= link_to "Delete", "/vehicle/delete/#{vehicle.id}", method: :delete, data: { confirm: "Are you sure?" } %></td>
-        <td><%= link_to "Book Service", "/service/add/#{vehicle.id}/dates" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+<div class="container" width="100%">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Brand</div>
+      <div class="col col-2">Model</div>
+      <div class="col col-3">Color</div>
+      <div class="col col-4">Vehicle number</div>
+      <div class="col col-5">Service Date</div>
+      <div class="col col-6">Update</div>
+      <div class="col col-7">Delete Vehicle</div>
+      <div class="col col-8">Book</div>
+    </li>
+    <% @vehicles.each do |vehicle| %>
+        <li class="table-row">            
+            <div class="col col-1" data-label="Brand"><%= vehicle.make %></div>
+            <div class="col col-2" data-label="Model"><%= vehicle.vehicle_modal %></div>
+            <div class="col col-3" data-label="Color"><%=  vehicle.color %> </div>
+            <div class="col col-4" data-label="Vehicle number"><%=vehicle.vehicle_number %></div> 
+            <div class="col col-5" data-label="Service Date"><%=vehicle.purchase_date %></div> 
+            <div class="col col-6" data-label="Update"><%= link_to "Edit", "/vehicles/#{vehicle.id}/edit" %></div>    
+            <div class="col col-7" data-label="Delete Vehicle"><%= link_to "Delete", "/vehicle/delete/#{vehicle.id}",  data: { turbo: true, turbo_method: :delete ,confirm: "Are you sure?" } %></div> 
+            <div class="col col-8" data-label="Book"><%= link_to "Book Service", "/service/add/#{vehicle.id}/check" %></div>       
+        </li>
+     <% end %>
+  </ul>
+</div>

@@ -1,0 +1,25 @@
+<%= render partial: "shared/employeeheader" %>
+<div class="container" width="100%">
+  <ul class="responsive-table">
+    <li class="table-header">
+        <div class="col col-1">Customer Id</div>
+        <div class="col col-2">Service Id</div>
+        <div class="col col-3">Primary Technician</div>
+        <div class="col col-5">Vehicle Number</div>
+        <div class="col col-6">Start date</div>
+        <div class="col col-7">End date</div>
+        <div class="col col-8">Status</div>
+    </li>
+    <% @service_handlers.each do |service_handler| %>
+        <li class="table-row">  
+            <div class="col col-1" data-label="User Id"><%= service_handler.user_id %></div>          
+            <div class="col col-2" data-label="Service Id"><%= service_handler.servicerequest_id %></div>
+            <div class="col col-3" data-label="Primary Technician"><%= service_handler.servicerequest.primary_technician&.user_name%></div>
+            <div class="col col-5" data-label="Vehicle Number"><%= service_handler.vehicle_number %></div>
+            <div class="col col-6" data-label="Start Date"><%= service_handler.servicerequest.start_date %></div>
+            <div class="col col-7" data-label="End Date"><%= service_handler.servicerequest.end_date %></div>
+            <div class="col col-8" data-label="Status"><%= service_handler.servicerequest.status %></div>
+        </li>
+     <% end %>
+  </ul>
+</div>

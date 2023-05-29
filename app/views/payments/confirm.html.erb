@@ -1,0 +1,12 @@
+<script>
+function deletePost() {
+    var ask = window.confirm("Proceed to payment?");
+    if (ask) {
+        window.location.href = "/user/payment/pay/" + <%= params[:id] %>;
+    }
+    else{
+        window.location.href = "/payments/all";
+    }
+}
+deletePost()
+</script> 
