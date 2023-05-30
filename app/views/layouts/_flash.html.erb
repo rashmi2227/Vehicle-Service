@@ -1,5 +1,9 @@
 <% flash.each do |flash_type, message| %>
   <div class="flash__message">
+  <div class="flash__icon">
+  <i class="icon fa fa-check-circle-o" aria-hidden="true">
     <%= message %>
+  </i>
+  </div>
   </div>
 <% end %>

@@ -42,11 +42,11 @@ class UserLogin < ApplicationRecord
         self.email = email.strip.downcase if email.present?
       end
     
-    #   def process_phone_number_format
-    #     return if phone_no.blank?
-    #     self.phone_no = phone_no.gsub(/\D/, '')
-    #     errors.add(:phone_no, 'should be 10 digits') unless phone_no.length == 10
-    #   end
+      # def process_phone_number_format
+      #   return if phone_no.blank?
+      #   self.phone_no = phone_no.gsub(/\D/, '')
+      #   errors.add(:phone_no, 'should be 10 digits') unless phone_no.length == 10
+      # end
     
       def encrypt_password
         self.password = BCrypt::Password.create(password) if password.present?

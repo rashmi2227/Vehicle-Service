@@ -1,13 +1,18 @@
 .flash {
+    // background-color: aqua;
     position:fixed;
-    top: 5rem;
-    left: 50%;
+    top: 7rem;
+    left: 85%;
     transform: translateX(-50%);
   
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-s);
+
+  //   top: 25px;
+  // right: 25px;
+
   
     max-width: 100%;
     width: max-content;
@@ -20,5 +25,37 @@
       background-color: var(--color-dark);
       animation: appear-then-fade 4s both;
       border-radius: 999px;
+      width: 350px;
+      padding: 20px 25px 20px 85px;
+      font-size: 16px;
+      font-weight: 400;
+      // color: $green;
+      background-color: #FFF;
+      border: 5px solid blue;
+      border-radius: 3px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+
+      &__icon{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 1.8em;
+        height: 100%;
+        padding: 0 0.4em;
+        // background-color: $green
+        color: #FFF;
+        font-size: 36px;
+        font-weight: 300;
+        transform: translate(0,-50%);
+
+        &icon{
+          position: absolute;
+          top: 50%;
+          transform: translate(0,-50%);
+        }
+      }
     }
   }
+
+   

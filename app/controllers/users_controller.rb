@@ -6,14 +6,14 @@ class UsersController < ApplicationController
     before_action :check_permission
 
     def check_permission
-        if current_user_login.role!='employee'
+        if current_user_login.role!='employee' && current_user_login.role!='admin'
             flash[:notice]='You need admins permssion to access'
             redirect_to root_path
         end
     end
 
     def check_user
-        if current_user_login.present? && current_user_login.role!='employee'
+        if current_user_login.present? && current_user_login.role!='employee' && current_user_login.role!='admin'
             flash[:notice]='Restricted Access'
             redirect_to root_path
         end

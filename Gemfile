@@ -61,6 +61,9 @@ gem 'faker'
 
 gem 'rails-jquery-autocomplete'
 
+gem 'slim'
+
+gem 'slim-rails'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
