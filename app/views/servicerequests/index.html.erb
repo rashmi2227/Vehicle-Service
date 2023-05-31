@@ -12,7 +12,8 @@
     </li>
     <% @service_handlers.each do |service_handler| %>
         <li class="table-row">  
-            <div class="col col-1" data-label="User Id"><%= service_handler.user_id %></div>          
+          <% @user_name = UserLogin.find_by(id: service_handler.user_id).user_name %> 
+            <div class="col col-1" data-label="User Id"><%=  @user_name %></div>         
             <div class="col col-2" data-label="Service Id"><%= service_handler.servicerequest_id %></div>
             <div class="col col-3" data-label="Primary Technician"><%= service_handler.servicerequest.primary_technician&.user_name%></div>
             <div class="col col-5" data-label="Vehicle Number"><%= service_handler.vehicle_number %></div>

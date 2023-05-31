@@ -167,12 +167,11 @@ class PaymentsController < ApplicationController
                 service_id = params[:id]
                 payment_status = "unpaid"
                 payment = Payment.create(amount: amount, user_id: user_id, vehicle_id: vehicle_id, servicerequest_id: service_id, payment_status: payment_status)
-        
                 if payment.persisted?
-                    flash[:success] = "amount added succesfully!"
+                    flash[:success] = "Amount added succesfully!"
                     redirect_to '/payments/show'
                 else
-                    flash[:error] = "Error booking service."
+                    flash[:error] = "Payment Unsuccessful!"
                     redirect_to '/admin/welcome'
                 end
             else 
@@ -235,7 +234,7 @@ class PaymentsController < ApplicationController
 
     def paymentdone
         if current_user_login.present?
-            if current_user_login.customer?
+            if current_user_login.admin?
 
             else 
                 flash[:notice]='Restricted Access'
@@ -251,6 +250,7 @@ class PaymentsController < ApplicationController
         if current_user_login.present?
             if current_user_login.admin?
                 @payment =  Payment.find_by(id: params[:id])
+                p @payment
                 if @payment.payment_status == "paid"
                     redirect_to '/payment/over'
                 elsif @payment.destroy

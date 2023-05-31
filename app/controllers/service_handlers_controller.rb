@@ -28,7 +28,6 @@ class ServiceHandlersController < ApplicationController
                 # puts(user_id)
                 vehicle_number = Vehicle.find(vehicle_id).vehicle_number
                 servicerequestid = params[:id]
-                # p servicerequestid
                 Servicerequest.where(id: servicerequestid).update(primary_technician_id: primary_technician_id)
                 services_array = params[:servicehandler][:subhandler]
                 # p services_array

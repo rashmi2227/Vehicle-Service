@@ -96,7 +96,9 @@ class ServicerequestsController < ApplicationController
     def showpendingservice
         if current_user_login.present?
             if current_user_login.employee?
-                @service_handlers = ServiceHandler.joins(:servicerequest).where("service_handlers.employee_id = :user_id OR servicerequests.primary_technician_id = :user_id", user_id: current_user_login.id).where(servicerequests: { status: 'pending' }).includes(:employee, servicerequest: :primary_technician).distinct    
+                @service_handlers = ServiceHandler.joins(:servicerequest).where("service_handlers.employee_id = :user_id OR servicerequests.primary_technician_id = :user_id", user_id: current_user_login.id).where(servicerequests: { status: 'pending' }).includes(:employee, servicerequest: :primary_technician)
+                @service_handlers = @service_handlers.uniq { |sh| sh.servicerequest_id }
+                # p @service_handlers
             else 
               flash[:notice]='Restricted Access'
               check_current_user_role
@@ -111,6 +113,7 @@ class ServicerequestsController < ApplicationController
         if current_user_login.present?
             if current_user_login.employee?
                 @service_handlers = ServiceHandler.joins(:servicerequest).where("service_handlers.employee_id = :user_id OR servicerequests.primary_technician_id = :user_id", user_id: current_user_login.id).select(:user_id, :servicerequest_id, :vehicle_id, :vehicle_number, :employee_id, :primary_technician_id).includes(:employee, servicerequest: :primary_technician)   
+                @service_handlers = @service_handlers.uniq { |sh| sh.servicerequest_id }
             else 
               flash[:notice]='Restricted Access'
               check_current_user_role

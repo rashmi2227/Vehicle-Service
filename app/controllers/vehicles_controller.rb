@@ -53,7 +53,7 @@ class VehiclesController < ApplicationController
       if current_user_login.present?
         if current_user_login.customer?
           @vehicles=Vehicle.new(vehicle_params)
-          p @vehicles
+          # p @vehicles
           if @vehicles.save
               respond_to do |format|
                   format.html { redirect_to '/bike/show', notice: "Vehicle was successfully created." }
