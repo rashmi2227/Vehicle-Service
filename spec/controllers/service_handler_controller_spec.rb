@@ -208,7 +208,7 @@ RSpec.describe ServiceHandlersController do
                 it "redirects to admin page" do
                     sign_in admin_user
                     get :done
-                    expect(response).to redirect_to admin_welcome_path
+                    expect(response).to have_http_status(200)
                 end
             end
 
@@ -224,7 +224,7 @@ RSpec.describe ServiceHandlersController do
                 it "redirects to customer page" do
                     sign_in customer_user
                     get :done
-                    expect(response).to have_http_status(200)
+                    expect(response).to have_http_status(302)
                 end
             end
         end

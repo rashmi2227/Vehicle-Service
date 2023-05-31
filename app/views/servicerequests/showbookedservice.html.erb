@@ -18,7 +18,11 @@
             <div class="col col-4" data-label="Service Date"><%= service_record.start_date %></div>
             <div class="col col-5" data-label="Status"><%= service_record.status %></div>  
             <div class="col col-4" data-label="Service Date"><%= service_record.primary_technician&.user_name%></div>
-            <div class="col col-6" data-label="Delete Booking"><%= link_to "Delete Booking", "/service/delete/#{service_record.id}/check" %></div>       
+            <div class="col col-6" data-label="Delete Booking">
+              <div class="buttoncontainer">
+                  <a class="button" href="/service/delete/<%= service_record.id %>/check" style="--color:red;">Cancel</a>
+              </div>
+            </div>       
         </li>
      <% end %>
   </ul>

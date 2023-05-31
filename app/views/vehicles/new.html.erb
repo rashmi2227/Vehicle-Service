@@ -1,4 +1,6 @@
 <%= render partial: "shared/header" %>
+<br>
+
 <div class="d-flex flex-column justify-content-center px-5 mx-5">
 <form class="mx-auto col-10 col-md-8 col-lg-6" action="/vehicles/create" method="post">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">

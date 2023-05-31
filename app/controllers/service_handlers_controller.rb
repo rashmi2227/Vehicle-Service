@@ -110,7 +110,7 @@ class ServiceHandlersController < ApplicationController
 
     def done
         if current_user_login.present?
-            if current_user_login.customer?
+            if current_user_login.admin?
     
             else 
                 flash[:notice]='Restricted Access'

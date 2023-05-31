@@ -5,14 +5,14 @@ class UserLogin < ApplicationRecord
            :recoverable, :rememberable, :validatable
 
     validates :email, format: URI::MailTo::EMAIL_REGEXP
-    def self.authenticate(email,password)
-        user = UserLogin.find_for_authentication(email: email)
-        user&.valid_password?(password) ? user : nil
-    end
+    # def self.authenticate(email,password)
+    #     user = UserLogin.find_for_authentication(email: email)
+    #     user&.valid_password?(password) ? user : nil
+    # end
 
     before_validation :normalize_email
     # after_validation :process_phone_number_format
-    before_save :encrypt_password
+    # before_save :encrypt_password
     # after_save :send_registration_email
     before_create :set_default_role
     
@@ -48,9 +48,9 @@ class UserLogin < ApplicationRecord
       #   errors.add(:phone_no, 'should be 10 digits') unless phone_no.length == 10
       # end
     
-      def encrypt_password
-        self.password = BCrypt::Password.create(password) if password.present?
-      end
+      # def encrypt_password
+      #   self.password = BCrypt::Password.create(password) if password.present?
+      # end
     
     #   def send_registration_email
     #     # Send registration email logic

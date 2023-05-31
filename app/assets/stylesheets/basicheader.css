@@ -9,16 +9,22 @@ body{
 }
 body::before {    
     content: "";
-    background-image: url('assets/image1.jpg');
-    background-size: cover;
-    position: absolute;
-    top: 0px;
+    background-image: url('assets/car.png');
+    background-position: left;
+	background-size: 55%;
+    position: fixed;
+    top: 50px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    /* opacity: 0.65; */
+    opacity: 1;
+	z-index: -1;
 }
 
+.box{
+	margin-left: 70%;
+	float: right;
+}
 
 * {
 	margin: 0;

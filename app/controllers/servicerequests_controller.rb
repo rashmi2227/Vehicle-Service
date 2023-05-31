@@ -24,7 +24,7 @@ class ServicerequestsController < ApplicationController
             if current_user_login.customer?
                 @user = current_user_login.id
                 servicerequest = Servicerequest.create(user_id: @user, vehicle_id: params[:id], status: "pending", start_date: params[:servicerequest][:start_date], end_date: params[:servicerequest][:end_date],  primary_technician_id: 40)
-                p servicerequest
+                # p servicerequest
                 if servicerequest.persisted?
                     flash[:success] = "Your bike service is booked successfully!"
                     redirect_to '/service/booked'

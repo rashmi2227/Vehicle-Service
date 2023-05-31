@@ -19,9 +19,21 @@
             <div class="col col-3" data-label="Color"><%=  vehicle.color %> </div>
             <div class="col col-4" data-label="Vehicle number"><%=vehicle.vehicle_number %></div> 
             <div class="col col-5" data-label="Service Date"><%=vehicle.purchase_date %></div> 
-            <div class="col col-6" data-label="Update"><%= link_to "Edit", "/vehicles/#{vehicle.id}/edit" %></div>    
-            <div class="col col-7" data-label="Delete Vehicle"><%= link_to "Delete", "/vehicle/delete/#{vehicle.id}",  data: { turbo: true, turbo_method: :delete ,confirm: "Are you sure?" } %></div> 
-            <div class="col col-8" data-label="Book"><%= link_to "Book Service", "/service/add/#{vehicle.id}/check" %></div>       
+            <div class="col col-6" data-label="Update">
+              <div class="buttoncontainer">
+                <a class="button" href="/vehicles/<%= vehicle.id %>/edit" style="--color: #FFF44F; font-weight: bolder;">Edit</a>
+              </div>            
+            </div>    
+            <div class="col col-7" data-label="Delete Vehicle">
+              <div class="buttoncontainer">
+                <a class="button" href="/service/add/<%= vehicle.id %>/check" style="--color:red;" data-turbo="true" data-turbo-method="delete" data-confirm="Are you sure?">Delete</a>
+              </div> 
+            </div> 
+            <div class="col col-8" data-label="Book">
+            <div class="buttoncontainer">
+                  <a class="button" href="/service/add/<%= vehicle.id %>/check" style="--color:#1e9bff;">Book</a>
+            </div>  
+            </div>       
         </li>
      <% end %>
   </ul>

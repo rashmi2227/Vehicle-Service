@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'paymentbutton' %>
 <%= render partial: "shared/header" %>
 <div class="container" width="100%">
   <ul class="responsive-table">
@@ -18,7 +19,9 @@
             <div class="col col-5" data-label="Service Status"><%= userpayment.servicerequest.status %></div>  
             <div class="col col-5" data-label="Payment Status"><%= userpayment.payment_status%></div>  
             <div class="col col-6" data-label="Amount"><%= userpayment.amount %></div>    
-            <div class="col col-6"><%= button_to "Pay #{userpayment.amount}", "/payments/#{userpayment.id}/check", method: :get %>   </div> 
+            <div class="col col-6">
+              <button class="btn third" onclick="location.href='/payments/<%= userpayment.id %>/check';">Pay <%= userpayment.amount %></button> 
+            </div> 
         </li>
      <% end %>
   </ul>

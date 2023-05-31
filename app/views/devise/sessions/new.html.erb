@@ -1,5 +1,7 @@
 <%= render partial: "shared/basicheader" %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mx-auto col-10 col-md-8 col-lg-6"}) do |f| %>
+<br>
+<br>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "box mx-auto col-10 col-md-8 col-lg-6"}) do |f| %>
   <div class="form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control"%>

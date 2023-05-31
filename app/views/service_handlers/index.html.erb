@@ -18,7 +18,12 @@
             <div class="col col-4" data-label="Start Date"><%= service_handler.servicerequest.start_date %></div>
             <div class="col col-5" data-label="End Date"><%= service_handler.servicerequest.end_date %></div>
             <div class="col col-6" data-label="Status"><%= service_handler.servicerequest.status %></div>
-            <div class="col col-7" data-label="Assign Service"><%= link_to "Edit", "/service/edit/#{service_handler.id}/check"%></div>  
+            <div class="col col-7" data-label="Modify">
+            
+            <div class="buttoncontainer">
+                <a class="button" href="/service/edit/<%= service_handler.id %>/check" style="--color:#1e9bff;">Edit</a>
+            </div>            
+            </div>  
         </li>
      <% end %>
   </ul>

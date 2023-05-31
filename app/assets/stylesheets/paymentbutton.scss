@@ -1,0 +1,56 @@
+//Colours
+$green: #5161ce;
+$red: #5161ce;
+$blue: #5161ce;
+$yellow: #5161ce;
+$purple: #5161ce;
+$turquoise: #5161ce;
+
+// Reset and Layout Styles
+
+
+
+// Basic Button Style
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid $red;
+  border-radius: 0.6em;
+  color: $red;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 2px;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
+}
+
+
+//BUTTON 3
+.third {
+  border-color: $blue;
+  color: #fff;
+  box-shadow: 0 0 40px 40px $blue inset, 0 0 0 0 $blue;
+  transition: all 150ms ease-in-out;
+  
+  &:hover {
+    border-color: $green;
+    box-shadow: 0 0 10px 0 $green inset, 0 0 10px 4px $green;
+    color: $green
+  }
+}
+

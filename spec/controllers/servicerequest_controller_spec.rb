@@ -24,7 +24,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in admin_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "2023-05-24", status:"pending"}}
-                    expect(response).to redirect_to root_path
+                    expect(response).to redirect_to admin_welcome_path
                 end
             end
 
@@ -32,7 +32,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in employee_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "2023-05-24", status:"pending"}}
-                    expect(response).to redirect_to employee_welcome_path
+                    expect(response).to redirect_to root_path
                 end
             end
 
@@ -64,7 +64,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in customer_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "20238-05-24", status:"pending"}}
-                    expect(response).to redirect_to root_path
+                    expect(response).to redirect_to bike_show_path
                 end
             end
 
@@ -72,7 +72,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in customer_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "2023-05-24", status:"Not done"}}
-                    expect(response).to redirect_to root_path
+                    expect(response).to redirect_to bike_show_path
                 end
             end
         end

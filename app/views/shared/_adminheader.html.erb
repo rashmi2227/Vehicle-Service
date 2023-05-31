@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag 'adminheader' %>
+<%= stylesheet_link_tag 'button' %>
+<%# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> %>
+<%# <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> %>
 <nav class="navbar navbar-expand-custom navbar-mainbg">
        <a class="navbar-brand navbar-logo" href="#">Car Repair</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,28 +11,28 @@
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/view/reviews"><i class="fas fa-tachometer-alt"></i>Reviews</a>
+                    <a class="nav-link" href="/admin/view/reviews"> Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/add/employee"><i class="fas fa-tachometer-alt"></i>Add Employee</a>
+                    <a class="nav-link" href="/admin/add/employee">Add Employee</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/admin/add/admin"><i class="far fa-address-book"></i>Add Admin</a>
+                    <a class="nav-link" href="/admin/add/admin">Add Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/assignservice"><i class="far fa-clone"></i>Assign Service</a>
+                    <a class="nav-link" href="/admin/assignservice">Assign Service</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/viewservices"><i class="far fa-calendar-alt"></i>Services</a>
+                    <a class="nav-link" href="/admin/viewservices">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/serviceassigned/show"><i class="far fa-chart-bar"></i>Handler</a>
+                    <a class="nav-link" href="/serviceassigned/show">Handler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/add/payment"><i class="far fa-chart-bar"></i>Payments</a>
+                    <a class="nav-link" href="/add/payment"></i>Payments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/view/employees"><i class="far fa-chart-bar"></i>Employee</a>
+                    <a class="nav-link" href="/view/employees"></i>Employee</a>
                 </li>
                 <li class="nav-item">
                     <%= button_to 'Sign Out', destroy_user_login_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "nav-link", style: "background: none!important; border: none; padding: 0!important; font-family: arial, sans-serif; color: #069; text-decoration: none; cursor: pointer; color: white;" %>
