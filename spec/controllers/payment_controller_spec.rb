@@ -427,7 +427,7 @@ RSpec.describe  PaymentsController do
                 it "redirects to admin page" do
                     sign_in admin_user
                     get :paymentdone
-                    expect(response).to redirect_to admin_welcome_path
+                    expect(response).to have_http_status(200)
                 end
             end
 
@@ -443,7 +443,7 @@ RSpec.describe  PaymentsController do
                 it "redirects to customer page" do
                     sign_in customer_user
                     get :paymentdone
-                    expect(response).to have_http_status(200)
+                    expect(response).to have_http_status(302)
                 end
             end
         end

@@ -60,9 +60,9 @@ class VehiclesController < ApplicationController
                   format.json { render :show, status: :created, location: @vehicles }
               end
             else
-              flash[:notice] = "Error adding vehicle!!"
+              # flash[:notice] = "Error adding vehicle!!"
               flash[:register_errors] = @vehicles.errors.full_messages
-              redirect_to '/vehicles/create'
+              redirect_to '/bike/new'
           end
         else 
           flash[:notice]='Restricted Access'

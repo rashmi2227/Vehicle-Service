@@ -29,8 +29,9 @@ class ServicerequestsController < ApplicationController
                     flash[:success] = "Your bike service is booked successfully!"
                     redirect_to '/service/booked'
                 else
-                    flash[:error] = "Error booking service."
-                    redirect_to '/bike/show'
+                    # flash[:error] = "Error booking service."
+                    flash[:register_errors] = servicerequest.errors.full_messages
+                    redirect_to "/service/add/#{params[:id]}/dates"
                 end
             else 
               flash[:notice]='Restricted Access'

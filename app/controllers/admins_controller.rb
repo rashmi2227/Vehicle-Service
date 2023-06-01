@@ -50,7 +50,12 @@ class AdminsController < ApplicationController
     def assign
         if current_user_login.present?
             if current_user_login.admin?
-
+                if Servicerequest.where(id: params[:id]).exists?
+                
+                else  
+                    flash[:notice]='Invalid Service Number'
+                    check_current_user_role
+                end
             else 
                 flash[:notice]='Restricted Access'
                 check_current_user_role
@@ -64,12 +69,19 @@ class AdminsController < ApplicationController
     def check 
         if current_user_login.present?
             if current_user_login.admin?
-                if Servicerequest.joins(:service_handlers).where(id: params[:id], status: 'pending') .exists?(service_handlers: { servicerequest_id: params[:id] })
-                    redirect_to '/service_handler/existing'
-                elsif Servicerequest.where(id: params[:id], status: 'done').exists?
-                    redirect_to '/service/done'
-                else
-                    redirect_to "/admin/assign/#{params[:id]}"
+                # @service_request = Servicerequest.where(id: params[:id])
+                # p @servicerequest
+                if Servicerequest.where(id: params[:id]).exists?
+                    if Servicerequest.joins(:service_handlers).where(id: params[:id], status: 'pending') .exists?(service_handlers: { servicerequest_id: params[:id] })
+                        redirect_to '/service_handler/existing'
+                    elsif Servicerequest.where(id: params[:id], status: 'done').exists?
+                        redirect_to '/service/done'
+                    else
+                        redirect_to "/admin/assign/#{params[:id]}"
+                    end
+                else                     
+                    flash[:notice]='Invalid Service Number'
+                    check_current_user_role 
                 end
             else 
                 flash[:notice]='Restricted Access'

@@ -250,7 +250,7 @@ class PaymentsController < ApplicationController
         if current_user_login.present?
             if current_user_login.admin?
                 @payment =  Payment.find_by(id: params[:id])
-                p @payment
+                # p @payment
                 if @payment.payment_status == "paid"
                     redirect_to '/payment/over'
                 elsif @payment.destroy
