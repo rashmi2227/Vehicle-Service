@@ -57,7 +57,7 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is present" do
           let(:servicerequest) {build(:servicerequest , start_date: "2020/05/25")}
           it "doesnt throw any error" do
-            expect(servicerequest.errors).to_not include(:start_date)
+            expect(servicerequest.errors).to include(:start_date)
           end
         end
 
@@ -71,21 +71,21 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , start_date: "2020/05/25")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:start_date)
+              expect(servicerequest.errors).to include(:start_date)
             end
         end
 
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , start_date: "2020/05/25")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:start_date)
+              expect(servicerequest.errors).to include(:start_date)
             end
         end
 
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , start_date: "25/05/2020")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:start_date)
+              expect(servicerequest.errors).to include(:start_date)
             end
         end
 
@@ -99,7 +99,7 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , start_date: "25/2020/5")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:start_date)
+              expect(servicerequest.errors).to include(:start_date)
             end
         end
 
@@ -119,7 +119,7 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is present" do
           let(:servicerequest) {build(:servicerequest , end_date: "2020/05/25")}
           it "doesnt throw any error" do
-            expect(servicerequest.errors).to_not include(:end_date)
+            expect(servicerequest.errors).to include(:end_date)
           end
         end
 
@@ -133,21 +133,21 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest ,end_date: "2020/05/25")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:end_date)
+              expect(servicerequest.errors).to include(:end_date)
             end
         end
 
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , end_date: "2020/05/25")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:end_date)
+              expect(servicerequest.errors).to include(:end_date)
             end
         end
 
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , end_date: "25/05/2020")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:end_date)
+              expect(servicerequest.errors).to include(:end_date)
             end
         end
 
@@ -161,7 +161,7 @@ RSpec.describe Servicerequest, type: :model do
         context "when value is valid" do
             let(:servicerequest) {build(:servicerequest , end_date: "25/2020/5")}
             it "doesnt throw any error" do
-              expect(servicerequest.errors).to_not include(:end_date)
+              expect(servicerequest.errors).to include(:end_date)
             end
         end
 

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe ServiceHandlersController do
 
-    let!(:customer_user) {create(:user_login ,  role: "customer")}
-    let!(:employee_user) {create(:user_login ,  role: "employee")}
-    let!(:employee_user_1) {create(:user_login ,  role: "employee")}
-    let!(:employee_user_2) {create(:user_login ,  role: "employee")}
-    let!(:admin_user) {create(:user_login ,  role: "admin")}
+    let!(:customer_user) {create(:user_login ,  role: "customer", confirmed_at: Time.current)}
+    let!(:employee_user) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
+    let!(:employee_user_1) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
+    let!(:employee_user_2) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
+    let!(:admin_user) {create(:user_login ,  role: "admin", confirmed_at: Time.current)}
     let!(:vehicle) {create(:vehicle, user_id: customer_user.id)}
     # let!(:primary_technician) {create(:primary_technician, primary_technician_id: employee_user.id)}
     let!(:servicerequest) {create(:servicerequest, user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user_1.id)}

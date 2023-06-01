@@ -7,7 +7,7 @@ FactoryBot.define do
         #   end
         vehicle_number { "TN 87 CB 2342" }
         color { "silver" }
-        purchase_date { "2023-05-24" }
+        purchase_date { "2023-04-24" }
         user_login
     end
 end

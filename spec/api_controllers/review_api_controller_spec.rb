@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Api::ReviewsController , type: :request do
 
-    let!(:customer_user) {create(:user_login ,  role: "customer")}
+    let!(:customer_user) {create(:user_login ,  role: "customer", confirmed_at: Time.current)}
     let!(:customer_token) {create(:doorkeeper_access_token , resource_owner_id: customer_user.id)}
 
-    let!(:employee_user) {create(:user_login ,  role: "employee")}
+    let!(:employee_user) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
     let!(:employee_token) {create(:doorkeeper_access_token , resource_owner_id: employee_user.id)}
 
-    let!(:admin_user) {create(:user_login ,  role: "admin")}
+    let!(:admin_user) {create(:user_login ,  role: "admin", confirmed_at: Time.current)}
     let!(:admin_token) {create(:doorkeeper_access_token , resource_owner_id: admin_user.id)}
 
     let!(:vehicle) {create(:vehicle, user_id: customer_user.id)}

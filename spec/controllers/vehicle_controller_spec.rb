@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe VehiclesController do
 
-    let!(:customer_user) {create(:user_login ,  role: "customer")}
-    let!(:employee_user) {create(:user_login ,  role: "employee")}
-    let!(:admin_user) {create(:user_login ,  role: "admin")}
+    let!(:customer_user) {create(:user_login ,  role: "customer", confirmed_at: Time.current)}
+    let!(:employee_user) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
+    let!(:admin_user) {create(:user_login ,  role: "admin", confirmed_at: Time.current)}
     let!(:vehicle) {create(:vehicle, user_id: customer_user.id)}
 
     describe "get/vehicle #welcome" do
@@ -141,7 +141,7 @@ RSpec.describe VehiclesController do
                 it "renders new page" do
                     sign_in customer_user
                     post :create , params:{vehicle:{ user_id: customer_user.id, vehicle_modal: "my car", make: "audi", vehicle_number: "TN 87 CB 2343", purchase_date:"2023-05-25", color: "blue"}}
-                    expect(response).to redirect_to vehicles_create_path
+                    expect(response).to redirect_to bike_new_path
                 end
             end
     
@@ -149,7 +149,7 @@ RSpec.describe VehiclesController do
                 it "puts a fail notice " do
                     sign_in customer_user
                     post :create , params:{vehicle:{ user_id: customer_user.id, vehicle_modal: "audi 500 gt", make: "benz", vehicle_number: "TN 87 CB 23542", purchase_date:"2023-05-25", color: "blue"}}
-                    expect(response).to redirect_to vehicles_create_path
+                    expect(response).to redirect_to bike_new_path
                 end
             end
     

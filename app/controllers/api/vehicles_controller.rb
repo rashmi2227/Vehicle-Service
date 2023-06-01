@@ -96,8 +96,10 @@ class Api::VehiclesController < Api::ApiController
       if @current_user
         if @current_user.role == 'employee'
           vehicle_num = params[:vehicle][:vehicle_number]
+          vehicle_num = vehicle_num.upcase
           # puts("=====1========")
           # puts(vehicle_num)
+          # puts("================")
           vehicle_id = Vehicle.find_by(vehicle_number: vehicle_num)&.id
           # puts("=====2========")
           # puts(vehicle_id)

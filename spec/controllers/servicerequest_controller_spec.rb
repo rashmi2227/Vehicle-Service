@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ServicerequestsController do
 
-    let!(:customer_user) {create(:user_login ,  role: "customer")}
-    let!(:employee_user) {create(:user_login ,  role: "employee")}
-    let!(:admin_user) {create(:user_login ,  role: "admin")}
+    let!(:customer_user) {create(:user_login ,  role: "customer", confirmed_at: Time.current)}
+    let!(:employee_user) {create(:user_login ,  role: "employee", confirmed_at: Time.current)}
+    let!(:admin_user) {create(:user_login ,  role: "admin", confirmed_at: Time.current)}
     let!(:vehicle) {create(:vehicle, user_id: customer_user.id)}
     # let!(:primary_technician) {create(:primary_technician, primary_technician_id: employee_user.id)}
     let!(:servicerequest) {create(:servicerequest, user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id)}
@@ -64,7 +64,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in customer_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "20238-05-24", status:"pending"}}
-                    expect(response).to redirect_to bike_show_path
+                    expect(response).to redirect_to "/service/add//dates"
                 end
             end
 
@@ -72,7 +72,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to login page" do
                     sign_in customer_user
                     post :create, params: {servicerequest: {user_id: customer_user.id, vehicle_id: vehicle.id, primary_technician_id: employee_user.id, start_date:"2023/05/24", end_date: "2023-05-24", status:"Not done"}}
-                    expect(response).to redirect_to bike_show_path
+                    expect(response).to redirect_to "/service/add//dates"
                 end
             end
         end

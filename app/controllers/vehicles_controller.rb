@@ -145,6 +145,7 @@ class VehiclesController < ApplicationController
       if current_user_login.present?
         if current_user_login.employee?
           vehicle_num = params[:vehicle][:vehicle_number]
+          vehicle_num = vehicle_num.upcase
           vehicle_id = Vehicle.find_by(vehicle_number: vehicle_num)&.id
           if vehicle_id.blank?
             flash[:notice] = "Invalid details!"

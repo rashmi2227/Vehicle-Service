@@ -46,15 +46,19 @@ class ServicerequestsController < ApplicationController
     def destroy
         if current_user_login.present?
             if current_user_login.customer?
-                @service = Servicerequest.find(params[:id])
-                @service.destroy  
-                respond_to do |format|
-                    format.html { redirect_to '/service/booked', notice: "Booking was successfully destroyed." }
-                    format.json { head :no_content }
+                if Servicerequest.where(id: params[:id]).exists?
+                    @service = Servicerequest.find(params[:id])
+                    @service.destroy  
+                    respond_to do |format|
+                        format.html { redirect_to '/service/booked', notice: "Booking was successfully destroyed." }
+                        format.json { head :no_content }
+                    end
+                else  
+                    flash[:notice]='Invalid Service No'
                 end
             else 
-              flash[:notice]='Restricted Access'
-              check_current_user_role
+                flash[:notice]='Restricted Access'
+                check_current_user_role
             end
         else   
             flash[:notice]='Unauthorised Access'
@@ -156,7 +160,13 @@ class ServicerequestsController < ApplicationController
     def liststatus
         if current_user_login.present?
             if current_user_login.employee?
-                @service = Servicerequest.find(params[:id])
+                @service = Servicerequest.find_by(id: params[:id])
+                if @service
+                    @service = Servicerequest.find(params[:id])
+                else  
+                    flash[:notice]='Invalid Service Number'
+                    redirect_to '/update/status'
+                end               
             else 
               flash[:notice]='Restricted Access'
               check_current_user_role
@@ -170,11 +180,15 @@ class ServicerequestsController < ApplicationController
     def update
         if current_user_login.present?
             if current_user_login.employee?
-                @status_update = Servicerequest.find(params[:id])    
-                if @status_update.update(status_params)
-                  redirect_to '/view/all/service', notice: "Vehicle updated successfully."
-                else
-                  redirect_to '/pending/service' 
+                if Servicerequest.where(id: params[:id]).exists?
+                    @status_update = Servicerequest.find(params[:id])    
+                    if @status_update.update(status_params)
+                      redirect_to '/view/all/service', notice: "Vehicle updated successfully."
+                    else
+                      redirect_to "/update/status/#{params[:id]}" , notice: 'Error Updating Status'
+                    end
+                else  
+                    flash[:notice]='Invalid Service Number'
                 end
             else 
               flash[:notice]='Restricted Access'
