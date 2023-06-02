@@ -318,7 +318,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to employee page" do
                     sign_in employee_user
                     patch :update, params: {id: servicerequest.id, servicerequest:{ status: "Incomplete"}}
-                    expect(response).to redirect_to pending_service_path
+                    expect(response).to redirect_to "/update/status/#{servicerequest.id}"
                 end
             end
 
@@ -326,7 +326,7 @@ RSpec.describe ServicerequestsController do
                 it "redirects to employee page" do
                     sign_in employee_user
                     patch :update, params: {id: servicerequest.id, servicerequest:{ status: "yet to be completed"}}
-                    expect(response).to redirect_to pending_service_path
+                    expect(response).to redirect_to "/update/status/#{servicerequest.id}"
                 end
             end
         end

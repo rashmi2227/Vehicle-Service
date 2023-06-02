@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
             if user
               review = Review.create(user_logins_id: current_user_login.id, reviewable_id: user.id, reviewable_type: params[:review][:reviewable_type], comment: params[:review][:comment])
               if review.persisted?
-                puts("done")
+                flash[:success] = "Review saved successfully"
                 redirect_to '/vehicles/welcome'
               else
                 flash[:success] = "Error saving review"
