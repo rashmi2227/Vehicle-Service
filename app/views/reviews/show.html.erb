@@ -4,11 +4,13 @@
     <li class="table-header">
         <div class="col col-1">User Id</div>
         <div class="col col-2">Review</div>
+        <div class="col col-3">Date</div>
     </li>
     <% @reviews.each do |review| %>
         <li class="table-row">  
             <div class="col col-1" data-label="User Id"><%= review.user_login.user_name %></div>          
             <div class="col col-2" data-label="Service Id"><%= review.comment %></div>
+            <div class="col col-3" data-label="Date"><%= review.created_at.to_date %></div>
         </li>
      <% end %>
   </ul>

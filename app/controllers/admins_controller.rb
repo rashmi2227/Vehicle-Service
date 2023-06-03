@@ -161,6 +161,7 @@ class AdminsController < ApplicationController
                 if Servicerequest.exists?(serviceid)
                     redirect_to "/admin/check/#{serviceid}"
                 else
+                    flash[:notice]='Invalid Service Number'
                     redirect_to '/admin/assignservice'
                 end
             else 
@@ -175,6 +176,6 @@ class AdminsController < ApplicationController
 
     private 
         def user_params
-            params.require(:user_login).permit(:user_name,:email,:password,:password_confirmation, :role, :phone_no)
+            params.require(:user_login).permit(:user_name,:email,:password,:password_confirmation, :role, :phone_no, :confirmed_at)
         end
 end

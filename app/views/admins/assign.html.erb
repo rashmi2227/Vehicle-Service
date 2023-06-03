@@ -8,27 +8,22 @@
     <label for="exampleInputEmail1">Service No</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<%= params[:id] %>" placeholder="Enter name" required>
   </div>
+
   <div class="form-group">
     <label for="exampleInputEmail1">Primary Technician</label>
     <%= select_tag 'servicerequest[primary_technician_id]', options_for_select(UserLogin.where(role: 'employee').map { |c| [c.email, c.id] }), { include_blank: 'Select', class: "form-control", required: true } %>
-    <%# <input type="number" class="form-control" name="servicerequest[primary_technician_id]" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Employee Id" required> %>
-  </div>
+  </div> 
   <div class="form-group">
-    <label for="exampleInputPassword1">Secondary Technicians</label>
-   <div class="input-group control-group after-add-more">  
-          <%# <input type="text" name="servicehandler[subhandler][]" class="form-control" placeholder="Enter Technician Id">   %>
-           <%# <%= form.select :user_id, options_for_select(User.all.map { |c| [c.name, c.id] }), { :multiple => false, include_blank: 'Select'}, {class: "form-select shadow shadow-sm ", required: true}  %>
+    <label style="display: flex;" for="exampleInputPassword1">Secondary Technicians  <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>  </label>
+   <div class="input-group control-group after-add-more"> 
           <%= select_tag 'servicehandler[subhandler][]', options_for_select(UserLogin.where(role: 'employee').map { |c| [c.email, c.id] }), { include_blank: 'Select', class: "form-control", required: true } %>
           <div class="input-group-btn">   
-            <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>  
+          
           </div>  
         </div>  
-  
-        <!-- Copy Fields -->  
         <div class="copy hide">  
           <div class="control-group input-group" style="margin-top:10px">  
           <%= select_tag 'servicehandler[subhandler][]', options_for_select(UserLogin.where(role: 'employee').map { |c| [c.email, c.id] }), { include_blank: 'Select', class: "form-control", required: true } %>
-            <%# <input type="text" name="servicehandler[subhandler][]" class="form-control" placeholder="Enter Employee Id">   %>
             <div class="input-group-btn">   
               <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>  
             </div>  
@@ -39,8 +34,8 @@
 
   <button type="submit" class="btn btn-primary">Submit</button>
   <%= javascript_include_tag 'addField' %>
+   <%= javascript_include_tag 'fields' %>
 </form>
 </div>
-
 
 

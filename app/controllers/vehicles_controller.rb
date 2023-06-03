@@ -196,7 +196,18 @@ class VehiclesController < ApplicationController
     def details
       if current_user_login.present?
         if current_user_login.employee?
-          @vehicle_spec = Vehicle.find_by(id: params[:id])
+          if Vehicle.where(id: params[:id]).exists?
+            if ServiceHandler.where(employee_id: current_user_login.id, vehicle_id: params[:id]).exists? || Servicerequest.where(primary_technician_id: current_user_login.id, vehicle_id: params[:id]).exists?
+              @vehicle_spec = Vehicle.find_by(id: params[:id])
+            else  
+              flash[:notice]='Restricted Access'
+              redirect_to '/vehicle/view'
+            end
+          else  
+            flash[:notice]='Invalid Vehicle Number'
+            redirect_to '/vehicle/view'
+          end
+          
         else 
           flash[:notice]='Restricted Access'
           check_current_user_role

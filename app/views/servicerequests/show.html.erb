@@ -8,6 +8,7 @@
       <div class="col col-4">Start Date</div>
       <div class="col col-5">End Date</div>
       <div class="col col-6">Assign Service</div>
+      <div class="col col-7">Payment</div>
     </li>
     <% @servicerequests.each do |servicerequest| %>
         <li class="table-row">            
@@ -20,6 +21,12 @@
               <div class="buttoncontainer">
               <i class="fa-solid fa-marker" style="color: #0b3783;"></i>
                   <a class="button" href="/admin/check/<%= servicerequest.id %>" style="--color:#1e9bff;">Assign</a>
+              </div>  
+            </div>  
+            <div class="col col-6" data-label="Assign Service">
+              <div class="buttoncontainer">
+              <i class="fa-regular fa-money-bill-1 fa-xl" style="color: #0b3783;"></i>
+                  <a class="button" href="/payment/check/<%= servicerequest.id %>" style="--color:#1e9bff;">Add</a>
               </div>  
             </div>       
         </li>

@@ -41,7 +41,32 @@ class PaymentsController < ApplicationController
                 if @serviceRequest
                     if Payment.exists?(servicerequest_id: @serviceRequest.id)
                         flash[:success] = "Payment already added!"
-                        redirect_to "/payment/status"
+                        redirect_to "/add/payment"
+                    else
+                        redirect_to "/payment/add/amount/#{@serviceRequest.id}"
+                    end
+                else 
+                    redirect_to '/payment/invalid/serviceno'
+                end
+            else 
+                flash[:notice]='Restricted Access'
+                check_current_user_role
+            end
+        else   
+            flash[:notice]='Unauthorised Access'
+            redirect_to root_path
+        end
+    end
+
+    def check_pay
+        if current_user_login.present?
+            if current_user_login.admin?
+                serviceid = params[:id]
+                @serviceRequest = Servicerequest.find_by(id: serviceid)
+                if @serviceRequest
+                    if Payment.exists?(servicerequest_id: @serviceRequest.id)
+                        flash[:success] = "Payment already added!"
+                        redirect_to "/admin/viewservices"
                     else
                         redirect_to "/payment/add/amount/#{@serviceRequest.id}"
                     end
@@ -75,11 +100,16 @@ class PaymentsController < ApplicationController
     def checkamount
         if current_user_login.present?
             if current_user_login.admin?
-                if Payment.exists?(id: params[:id], payment_status: "paid")
-                    flash[:success] = "Payment already added!"
+                if Payment.where(id: params[:id]).exists?
+                    if Payment.exists?(id: params[:id], payment_status: "paid")
+                        flash[:success] = "Payment already added!"
+                        redirect_to "/payment/status"
+                    else
+                        redirect_to "/payment/amount/edit/#{params[:id]}"
+                    end
+                else  
+                    flash[:notice]='Invalid Service Number'
                     redirect_to "/payment/status"
-                else
-                    redirect_to "/payment/amount/edit/#{params[:id]}"
                 end
             else 
                 flash[:notice]='Restricted Access'
@@ -113,7 +143,12 @@ class PaymentsController < ApplicationController
     def amount
         if current_user_login.present?
             if current_user_login.admin?
-                @servicerequest = Servicerequest.find(params[:id])
+                if Servicerequest.where(id: params[:id]).exists?
+                    
+                else  
+                    flash[:notice]='Invalid Service Number'
+                    redirect_to '/admin/viewservices'
+                end
             else 
                 flash[:notice]='Restricted Access'
                 check_current_user_role
@@ -127,7 +162,13 @@ class PaymentsController < ApplicationController
     def edit
         if current_user_login.present?
             if current_user_login.admin?
-                @payment = Payment.find(params[:id])
+                if Payment.where(id: params[:id]).exists?
+                    @payment = Payment.find(params[:id])
+
+                else  
+                    flash[:notice]='Invalid Payment Number'
+                    redirect_to "/payment/status"
+                end
             else 
                 flash[:notice]='Restricted Access'
                 check_current_user_role
@@ -161,18 +202,23 @@ class PaymentsController < ApplicationController
         if current_user_login.present?
             if current_user_login.admin?
                 @servicerequest = Servicerequest.find(params[:id])
-                amount = params[:payment][:amount]
-                user_id = @servicerequest.user_id
-                vehicle_id = @servicerequest.vehicle_id
-                service_id = params[:id]
-                payment_status = "unpaid"
-                payment = Payment.create(amount: amount, user_id: user_id, vehicle_id: vehicle_id, servicerequest_id: service_id, payment_status: payment_status)
-                if payment.persisted?
-                    flash[:success] = "Amount added succesfully!"
-                    redirect_to '/payments/show'
-                else
-                    flash[:error] = "Payment Unsuccessful!"
-                    redirect_to '/admin/welcome'
+                if @servicerequest
+                    amount = params[:payment][:amount]
+                    user_id = @servicerequest.user_id
+                    vehicle_id = @servicerequest.vehicle_id
+                    service_id = params[:id]
+                    payment_status = "unpaid"
+                    payment = Payment.create(amount: amount, user_id: user_id, vehicle_id: vehicle_id, servicerequest_id: service_id, payment_status: payment_status)
+                    if payment.persisted?
+                        flash[:success] = "Amount added succesfully!"
+                        redirect_to '/payments/show'
+                    else
+                        flash[:error] = "Payment Unsuccessful!"
+                        redirect_to '/add/payment'
+                    end
+                else  
+                    flash[:error] = "Invalid Service Number!"
+                    redirect_to '/add/payment'
                 end
             else 
                 flash[:notice]='Restricted Access'

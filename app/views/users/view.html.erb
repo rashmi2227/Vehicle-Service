@@ -5,12 +5,14 @@
       <div class="col col-1">Employee Id</div>
       <div class="col col-2">Employee Name</div>
       <div class="col col-3">Email</div>
+      <div class="col col-4">Phone No</div>
     </li>
     <% @users.each do |user| %>
         <li class="table-row">            
             <div class="col col-1" data-label="Employee Id"><%= user.id %></div>
             <div class="col col-2" data-label="Employee Name"><%= user.user_name %></div>
-            <div class="col col-3" data-label="Email"><%= user.email%> </div>   
+            <div class="col col-3" data-label="Email"><%= user.email%> </div> 
+            <div class="col col-4" data-label="Phone No"><%= user.phone_no%> </div>            
         </li>
      <% end %>
   </ul>

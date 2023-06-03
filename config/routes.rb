@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get '/admin/assignservice' => 'admins#assignservice'
   post '/check/serviceid' => 'admins#checkservice'
   post '/status/serviceid' => 'employees#checkservice'
+  get '/status/serviceid/:id' => 'employees#check_service'
   get '/service/edit/:id' => 'service_handlers#edit'
   get '/service/edit/:id/check' => 'service_handlers#checkstatus'
   patch '/edithandlers/:id' => 'service_handlers#update'
@@ -68,6 +69,7 @@ Rails.application.routes.draw do
   get '/vehicle/details/:id' => "vehicles#details"
   get '/add/payment' => 'payments#form'
   post '/payment/check' => 'payments#check'
+  get '/payment/check/:id' => 'payments#check_pay'
   get 'payment/add/amount/:id' => 'payments#amount'
   get 'payment/status' => 'payments#index'
   post 'payment/add/:id' => 'payments#create'

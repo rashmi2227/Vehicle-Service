@@ -23,7 +23,7 @@ class ServicerequestsController < ApplicationController
         if current_user_login.present?
             if current_user_login.customer?
                 @user = current_user_login.id
-                servicerequest = Servicerequest.create(user_id: @user, vehicle_id: params[:id], status: "pending", start_date: params[:servicerequest][:start_date], end_date: params[:servicerequest][:end_date],  primary_technician_id: 40)
+                servicerequest = Servicerequest.create(user_id: @user, vehicle_id: params[:id], status: "pending", start_date: params[:servicerequest][:start_date], end_date: params[:servicerequest][:end_date],  primary_technician_id: 86 )
                 # p servicerequest
                 if servicerequest.persisted?
                     flash[:success] = "Your bike service is booked successfully!"
@@ -162,7 +162,13 @@ class ServicerequestsController < ApplicationController
             if current_user_login.employee?
                 @service = Servicerequest.find_by(id: params[:id])
                 if @service
-                    @service = Servicerequest.find(params[:id])
+                    @status = Servicerequest.find_by(id: params[:id], status: 'pending')
+                    if @status
+                        @service = Servicerequest.find(params[:id])
+                    else  
+                        flash[:notice]='Update Restricted. Status done'
+                        redirect_to '/update/status'
+                    end
                 else  
                     flash[:notice]='Invalid Service Number'
                     redirect_to '/update/status'
@@ -181,7 +187,7 @@ class ServicerequestsController < ApplicationController
         if current_user_login.present?
             if current_user_login.employee?
                 if Servicerequest.where(id: params[:id]).exists?
-                    @status_update = Servicerequest.find(params[:id])    
+                    @status_update = Servicerequest.find(params[:id]) 
                     if @status_update.update(status_params)
                       redirect_to '/view/all/service', notice: "Vehicle updated successfully."
                     else
@@ -216,7 +222,7 @@ class ServicerequestsController < ApplicationController
 
     private 
         def status_params
-            params.require(:servicerequest).permit(:status)
+            params.require(:servicerequest).permit(:status, :id, :user_id, :vehicle_id, :start_date, :end_date)
         end
 
     private 

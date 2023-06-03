@@ -415,7 +415,7 @@ RSpec.describe VehiclesController do
                 it "redirects to details page" do
                     sign_in employee_user
                     get :details, params: {id: vehicle.id}
-                    expect(response).to have_http_status(200)
+                    expect(response).to have_http_status(302)
                 end
             end
 
