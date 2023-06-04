@@ -29,9 +29,9 @@ ActiveAdmin.register ServiceHandler do
     actions
   end
 
-  filter :user_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
-  filter :employee_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
-  filter :id, as: :select, collection: proc { Servicerequest.pluck(:id).uniq }
+  # filter :user_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
+  # filter :employee_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
+  # filter :id, as: :select, collection: proc { Servicerequest.pluck(:id).uniq }
   filter :vehicle_number
   
 end

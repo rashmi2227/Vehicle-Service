@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_052547) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_125859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_052547) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_controllers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_controllers_on_reset_password_token", unique: true
+  end
+
+  create_table "handlers_logins", id: false, force: :cascade do |t|
+    t.bigint "service_handler_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["service_handler_id", "user_id"], name: "index_handlers_logins_on_handler_id_and_login_id"
+    t.index ["user_id", "service_handler_id"], name: "index_handlers_logins_on_login_id_and_handler_id"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -131,6 +138,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_052547) do
     t.index ["servicerequest_id"], name: "index_service_handlers_on_servicerequest_id"
     t.index ["user_id"], name: "index_service_handlers_on_user_id"
     t.index ["vehicle_id"], name: "index_service_handlers_on_vehicle_id"
+  end
+
+  create_table "service_handlers_user_logins", id: false, force: :cascade do |t|
+    t.bigint "service_handler_id", null: false
+    t.bigint "user_login_id", null: false
   end
 
   create_table "service_handlers_users", id: false, force: :cascade do |t|

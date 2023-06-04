@@ -98,6 +98,7 @@ Rails.application.routes.draw do
   get '/payments/delete/:id' => 'payments#destroy'
   get '/payment/over' => 'payments#paymentdone'
   get '/service/edit' => 'service_handlers#done'
+  get '/delete/service/handler/:id' => 'service_handlers#destroy'
 
   scope :api do
     use_doorkeeper do

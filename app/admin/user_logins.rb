@@ -25,9 +25,9 @@ ActiveAdmin.register UserLogin do
     actions
   end
 
-  filter :user_name, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
-  filter :role, as: :select, collection: UserLogin.roles.keys
-  filter :email, as: :select, collection: proc { UserLogin.pluck(:email).uniq }
+  # filter :user_name, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
+  # filter :role, as: :select, collection: UserLogin.roles.keys
+  # filter :email, as: :select, collection: proc { UserLogin.pluck(:email).uniq }
 
   scope :user_as_employee
   scope :user_as_admin

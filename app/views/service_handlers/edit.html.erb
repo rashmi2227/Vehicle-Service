@@ -4,14 +4,18 @@
   <%= f.label :servicerequest_id %>
   <%= f.text_field :servicerequest_id, class: "form-control", readonly: true %>
   </div>
-  <div class="form-group">
+<div class="form-group">
   <%= f.label :primary_technician_id %>
-  <%= f.text_field :primary_technician_id, class: "form-control" %>
-  </div>
+  <% @primary_user_name = UserLogin.find_by(id: @service_handler.primary_technician_id).user_name %> 
+  <%= select_tag 'servicerequest[primary_technician_id]', options_for_select(UserLogin.where(role: "employee").map { |c| [c.user_name, c.id] }), { include_blank: 'Select', class: "form-control" } %>
+</div>
+
 <div class="form-group">
   <%= f.label :employee_id %>
-  <%= f.text_field :employee_id, class: "form-control" %>
-  </div>
+  <% @employee_user_name = UserLogin.find_by(id: @service_handler.employee_id).user_name %> 
+  <%= select_tag 'servicehandler[employee_id]', options_for_select(UserLogin.where(role: "employee").map { |c| [c.user_name, c.id] } ), { include_blank: 'Select', class: "form-control"} %>
+</div>
+
 <div class="form-group">
   <%= f.label :start_date %>
   <%= f.text_field :start_date, class: "form-control" , readonly: true%>
@@ -28,6 +32,7 @@
   <%= f.submit "Update Handlers", class: "btn btn-primary"  %>
   </div>
 <% end %>
+   <%= javascript_include_tag 'field' %>
 
 
 

@@ -34,7 +34,7 @@ ActiveAdmin.register Review do
   end
 
   filter :reviewable_type
-  filter :user_login_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
+  # filter :user_login_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
 
   scope :review_for_servicing
   scope :review_for_users
