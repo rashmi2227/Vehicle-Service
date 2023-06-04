@@ -55,6 +55,7 @@ class ServicerequestsController < ApplicationController
                     end
                 else  
                     flash[:notice]='Invalid Service No'
+                    redirect_to '/service/booked'
                 end
             else 
                 flash[:notice]='Restricted Access'
@@ -85,7 +86,10 @@ class ServicerequestsController < ApplicationController
             if current_user_login.customer?
                 if Servicerequest.where(vehicle_id: params[:id], status: 'pending').exists?
                     redirect_to "/service/vehicle/assigned"
-                  else
+                elsif Payment.where(vehicle_id: params[:id], payment_status: 'unpaid').exists?
+                    flash[:notice]='Pending payment'
+                    redirect_to '/payments/all'
+                else
                     redirect_to "/service/add/#{params[:id]}/dates"
                 end  
             else 

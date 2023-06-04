@@ -221,7 +221,11 @@ class ServiceHandlersController < ApplicationController
             if current_user_login.customer?
                 if Servicerequest.joins(:service_handlers).where(id: params[:id], status: 'pending') .exists?(service_handlers: { servicerequest_id: params[:id] })
                     redirect_to '/vehicles/alert'
-                elsif Servicerequest.where(id: params[:id], status: 'done').exists?
+                elsif Servicerequest.where(id: params[:id], status: 'done').exists? && Payment.where(servicerequest_id: params[:id], payment_status: 'unpaid').exists?
+                    flash[:notice]='Payment is pending'
+                    redirect_to '/payments/all'
+                    # redirect_to '/vehcile/service/done'
+                elsif Servicerequest.where(id: params[:id], status: 'done').exists? 
                     redirect_to '/vehcile/service/done'
                 else
                     redirect_to "/service/delete/#{params[:id]}"

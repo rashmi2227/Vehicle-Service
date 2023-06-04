@@ -175,13 +175,23 @@ class VehiclesController < ApplicationController
             flash[:alert] = "Vehicle has been booked for service."
             redirect_to '/vehicles/alert'
           else
-            @vehicless = Vehicle.find(params[:id])
-            @vehicless.destroy
-      
-            respond_to do |format|
-            format.html { redirect_to '/bike/show', notice: "Vehicle was successfully destroyed." }
-            format.json { head :no_content }
+            if Payment.where(vehicle_id: params[:id], payment_status: 'paid').destroy_all
+              if ServiceHandler.where(vehicle_id: params[:id]).destroy_all
+                if Servicerequest.where(vehicle_id: params[:id]).destroy_all
+                  if Vehicle.where(id: params[:id]).destroy_all
+                    redirect_to '/bike/show', notice: "Deleted successfully."
+                  else  
+                    redirect_to '/bike/show', notice: "Not deleted successfully."
+                  end
+                end
+              end
             end
+            # # @vehicless = Vehicle.find(params[:id])         
+      
+            # respond_to do |format|
+            # format.html { redirect_to '/bike/show', notice: "Vehicle was successfully destroyed." }
+            # format.json { head :no_content }
+            # end
           end
         else 
           flash[:notice]='Restricted Access'
