@@ -30,9 +30,9 @@ ActiveAdmin.register Payment do
     actions
   end
 
-  # filter :servicerequest_id, as: :select, collection: proc { Servicerequest.pluck(:id).uniq }
-  # filter :user_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
-  # filter :vehicle_id, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
+  filter :servicerequest_id, as: :select, collection: proc { Servicerequest.pluck(:id).uniq }
+  filter :user_id, as: :select, collection: proc { UserLogin.pluck(:user_name).uniq }
+  filter :vehicle_id, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
   filter :amount
 
   scope :pending_payment_status

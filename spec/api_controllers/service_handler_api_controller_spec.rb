@@ -33,14 +33,14 @@ RSpec.describe Api:: ServicerequestsController , type: :request do
             context "When signed in as customer" do
                 it "redirects to user profile page" do
                     post "/api/serviceassigned/#{servicerequest.id}", params: {access_token: customer_token.token, user_id: customer_user.id, primary_technician_id: employee_user_1.id, employee_id: [employee_user_2.id], vehicle_id: vehicle.id, vehicle_number: vehicle.vehicle_number}
-                    expect(response).to have_http_status(404)
+                    expect(response).to have_http_status(403)
                 end
             end
 
             context "When signed in as employee" do
                 it "redirects to users index" do
                     post "/api/serviceassigned/#{servicerequest.id}", params: {access_token: employee_token.token, user_id: customer_user.id, primary_technician_id: employee_user_1.id, employee_id: [employee_user_2.id], vehicle_id: vehicle.id, vehicle_number: vehicle.vehicle_number}
-                    expect(response).to have_http_status(404)
+                    expect(response).to have_http_status(403)
                 end
             end
 
@@ -79,7 +79,7 @@ RSpec.describe Api:: ServicerequestsController , type: :request do
             context "When signed in as admin" do
                 it "redirects to sub-vehicles profile index" do
                     get "/api/serviceassigned/show", params: {access_token: admin_token.token, user_id: customer_user.id, primary_technician_id: employee_user_1.id, employee_id: [employee_user_2.id], vehicle_id: vehicle.id, vehicle_number: vehicle.vehicle_number}
-                    expect(response).to have_http_status(204)
+                    expect(response).to have_http_status(404)
                 end
             end
         end

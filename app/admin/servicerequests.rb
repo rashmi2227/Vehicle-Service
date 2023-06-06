@@ -33,8 +33,8 @@ ActiveAdmin.register Servicerequest do
     actions
   end
 
-  # filter :primary_technician_id, as: :select, collection: -> { UserLogin.pluck(:user_name, :id) }
-  # filter :vehicle_id, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
+  filter :primary_technician_id, as: :select, collection: -> { UserLogin.pluck(:user_name, :id) }
+  filter :vehicle_id, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
   filter :start_date
   filter :end_date
   filter :status

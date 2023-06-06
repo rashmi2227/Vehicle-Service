@@ -6,10 +6,10 @@ class UserLogin < ApplicationRecord
            :confirmable
 
     validates :email, format: URI::MailTo::EMAIL_REGEXP
-    # def self.authenticate(email,password)
-    #     user = UserLogin.find_for_authentication(email: email)
-    #     user&.valid_password?(password) ? user : nil
-    # end
+    def self.authenticate(email,password)
+        user = UserLogin.find_for_authentication(email: email)
+        user&.valid_password?(password) ? user : nil
+    end
 
     before_validation :normalize_email
     # after_validation :process_phone_number_format

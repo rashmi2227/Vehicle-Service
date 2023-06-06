@@ -50,7 +50,7 @@ class Api::PaymentsController < Api::ApiController
     def updateamount
         if @current_user
             if @current_user.role == 'admin'
-                @payment = Payment.find(params[:id])
+                @payment = Payment.find_by(id: params[:id])
                 if @payment
                     if @payment.payment_status=="paid"
                         render json: {message: "Payment is done. Action cannot be performed"} , status: :forbidden
@@ -77,15 +77,15 @@ class Api::PaymentsController < Api::ApiController
             if @current_user.role == 'admin'
                 @user = UserLogin.find_by(id: params[:user_id])
                 if @user
-                    @servicerequest = Servicerequest.find_by(id: params[:id])
+                    @servicerequest = Servicerequest.find_by(id: params[:servicerequest_id])
                     if @servicerequest 
                         @vehicle = Vehicle.find_by(id: params[:vehicle_id])
                         if @vehicle
-                            @checkExistence = Payment.find_by(servicerequest_id: params[:id], payment_status: "unpaid")
+                            @checkExistence = Payment.find_by(servicerequest_id: params[:servicerequest_id], payment_status: "unpaid")
                             if @checkExistence                        
                                 render json: {message: "Payment request already generated"} , status: :ok
                             else 
-                                @servicePending = Servicerequest.find_by(id: params[:id], status: "Pending")
+                                @servicePending = Servicerequest.find_by(id: params[:servicerequest_id], status: "pending")
                                 if @servicePending
                                     @payment = Payment.new(payment_params)
                                     @payment.servicerequest_id = @servicerequest.id

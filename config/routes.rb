@@ -179,7 +179,7 @@ Rails.application.routes.draw do
     post 'payment/check' => 'payments#check'
     get 'payment/add/amount/:id' => 'payments#amount'
     get 'payment/status' => 'payments#index'
-    post 'payment/add/:id' => 'payments#create'
+    post 'payment/add' => 'payments#create'
     get 'payments/show' => 'payments#index'
     get '/payments/all' => 'payments#show'
     get '/payments/:id/pay' => 'payments#confirm'

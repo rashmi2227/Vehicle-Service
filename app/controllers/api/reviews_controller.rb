@@ -125,7 +125,7 @@ class Api::ReviewsController < Api::ApiController
               render json: { error: @review.errors.full_messages } , status: :unprocessable_entity
             end
           else
-            render json: { message: "No review found with the id #{params[:id]}" } , status: :no_content
+            render json: { message: "No review found with the id #{params[:id]}" } , status: :not_found
           end
         else  
           render json: { error: 'Access restricted' }, status: :forbidden

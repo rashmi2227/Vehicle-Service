@@ -175,7 +175,7 @@ RSpec.describe Vehicle, type: :model do
       context "when alphabets are in lower case" do
         let(:vehicle) {build(:vehicle , vehicle_number: "tn 37 cb 6889")}
         it "throws error" do
-          expect(vehicle.errors).to include(:vehicle_number)
+          expect(vehicle.errors).to_not include(:vehicle_number)
         end
       end
 

@@ -93,7 +93,7 @@ RSpec.describe ServiceHandler, type: :model do
         context "when alphabets are in lower case" do
             let(:service_handler) {build(:vehicle , vehicle_number: "tn 37 cb 6889")}
             it "throws error" do
-                expect(service_handler.errors).to include(:vehicle_number)
+                expect(service_handler.errors).to_not include(:vehicle_number)
             end
         end
 

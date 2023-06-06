@@ -30,8 +30,9 @@ ActiveAdmin.register Vehicle do
   end
 
   filter :user_login
-  # filter :user_login, as: :select, collection: UserLogin.all.map{|c| [c.user_name, c.id]}
-  # filter :color, as: :select, collection: proc { Vehicle.pluck(:color).uniq }
-  # filter :vehicle_number, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
+  filter :user_login, as: :select, collection: UserLogin.all.map{|c| [c.user_name, c.id]}
+  filter :color, as: :select, collection: proc { Vehicle.pluck(:color).uniq }
+  filter :vehicle_number, as: :select, collection: proc { Vehicle.pluck(:vehicle_number).uniq }
   
+  scope :vehicle_under_service
 end

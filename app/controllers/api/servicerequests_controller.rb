@@ -41,9 +41,19 @@ class Api::ServicerequestsController < Api::ApiController
                     if Servicerequest.joins(:service_handlers).where(id: params[:id], status: 'Pending') .exists?(service_handlers: { servicerequest_id: params[:id] })
                         render json: { message: "Vehicle is under service"} , status: :ok
                     elsif Servicerequest.where(id: params[:id], status: 'done').exists? 
-                        render json: { message: "Vehicle servicing completed deletion cant be performed"} , status: :ok             
-                    elsif @service.destroy
-                        render json: { message: "Service Request deleted successfully"} , status: :ok
+                        render json: { message: "Vehicle servicing completed deletion cant be performed"} , status: :ok 
+                    elsif Payment.where(servicerequest_id: params[:id], payment_status: 'unpaid').exists?
+                        render json: { message: "Payment is pending"} , status: :ok          
+                    elsif Payment.where(servicerequest_id: params[:id], payment_status: 'paid').destroy_all
+                        if ServiceHandler.where(servicerequest_id: params[:id]).destroy_all
+                            if Servicerequest.where(id: params[:id]).destroy_all
+                                render json: { message: "Service Request deleted successfully"} , status: :ok
+                            else 
+                                render json: { error: @service.errors.full_messages } , status: :unprocessable_entity 
+                            end
+                        else  
+                            render json: { error: @service.errors.full_messages } , status: :unprocessable_entity
+                        end
                     else
                         render json: { error: @service.errors.full_messages } , status: :unprocessable_entity
                     end

@@ -48,10 +48,10 @@ class Api::ServiceHandlersController < Api::ApiController
                     render json: {message: "No service request found with id #{params[:id]}"} , status: :not_found
                 end
             else  
-                render json: {message: "No user found with id #{params[:user_id]}"} , status: :not_found
+                render json: {message: "Access restricted"} , status: :forbidden
             end
         else  
-            render json: { error: 'Access restricted' }, status: :forbidden
+            render json: { error: 'Invalid user' }, status: :unauthorized
         end
     end
 
@@ -64,7 +64,7 @@ class Api::ServiceHandlersController < Api::ApiController
             if @current_user.role == 'admin'
                 @service_handlers = ServiceHandler.includes(:employee, servicerequest: :primary_technician).where.not(servicerequest_id: nil)
                 if @service_handlers.empty?
-                    render json: { message: "No service handlers found for any service request." } , status: :no_content
+                    render json: { message: "No service handlers found for any service request." } , status: :not_found
                 else  
                     render json: @service_handlers , status: :ok
                 end
